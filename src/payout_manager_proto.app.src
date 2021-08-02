@@ -1,0 +1,11 @@
+{application, magista_proto, [
+    {description, "Thrift proto for magista"},
+    {vsn, "0.1.0"},
+    {applications, [
+        kernel,
+        stdlib
+    ]},
+    {maintainers, [
+        "RBK Money https://rbk.money"
+    ]}
+]}.
