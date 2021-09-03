@@ -2,8 +2,8 @@ include "proto/base.thrift"
 include "proto/domain.thrift"
 include "magista.thrift"
 
-namespace java com.rbkmoney.magista.okko
-namespace erlang magista_okko
+namespace java com.rbkmoney.magista.dark.messiah
+namespace erlang magista_dark_messiah
 
 typedef string ContinuationToken
 
@@ -55,7 +55,7 @@ struct EnrichedStatInvoice {
     3: required list<magista.StatRefund> refunds
 }
 
-service OkkoMerchantStatisticsService {
+service DarkMessiahMerchantStatisticsService {
 
     StatEnrichedStatInvoiceResponse SearchInvoicesByPaymentSearchQuery (1: PaymentSearchQuery payment_search_query)
         throws (1: BadContinuationToken ex1, 2: LimitExceeded ex2, 3: base.InvalidRequest ex3)
