@@ -59,6 +59,7 @@ struct InvoiceTemplateSearchQuery {
     2: optional domain.InvoiceTemplateID invoice_template_id
     3: optional base.Timestamp invoice_valid_until
     4: optional string product
+    5: optional string name
 }
 
 struct CommonSearchQueryParams {
@@ -428,6 +429,7 @@ struct StatInvoiceTemplate {
     4: required domain.InvoiceTemplateID invoice_template_id
     5: required base.Timestamp invoice_valid_until
     6: required string product
+    10: optional string name
     7: optional string description
     8: optional domain.InvoiceTemplateDetails details
     9: optional domain.InvoiceContext context
