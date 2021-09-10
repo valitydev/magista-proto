@@ -1,8 +1,8 @@
 [{<<"damsel">>,
   {git,"https://github.com/rbkmoney/damsel.git",
-       {ref,"c4e9649cf041259a5807b9b57e6548fa7f5e5385"}},
+       {ref,"3e05d79ff90fa4ba5afc4db76d915bcd777d540a"}},
   0},
   {<<"payout_manager_proto">>,
     {git,"https://github.com/rbkmoney/payout-manager-proto.git",
-         {ref,"608dd90086436ca0162ac89ff615dd1aafe535cc"}},
+         {ref,"bdd98885788d4d2937432ac972f9411475c9aaf9"}},
     0}].

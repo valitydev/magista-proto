@@ -52,7 +52,7 @@
         <dependency>
             <groupId>com.rbkmoney</groupId>
             <artifactId>payout-manager-proto</artifactId>
-            <version>1.20-608dd90</version>
+            <version>1.21-bdd9888</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
