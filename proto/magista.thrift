@@ -60,6 +60,7 @@ struct InvoiceTemplateSearchQuery {
     3: optional base.Timestamp invoice_valid_until
     4: optional string product
     5: optional string name
+    6: optional InvoiceTemplateStatus invoice_template_status
 }
 
 struct CommonSearchQueryParams {
@@ -95,6 +96,11 @@ struct PaymentParams {
     21: optional domain.Amount payment_amount_from
     22: optional domain.Amount payment_amount_to
     23: optional domain.LegacyBankCardTokenProvider payment_token_provider
+}
+
+enum InvoiceTemplateStatus {
+    created
+    deleted
 }
 
 struct StatInvoiceResponse {
@@ -423,16 +429,18 @@ struct StatChargeback {
 }
 
 struct StatInvoiceTemplate {
-    1: required base.Timestamp created_at
+    1: required base.Timestamp event_created_at
     2: required domain.PartyID party_id
     3: required domain.ShopID shop_id
     4: required domain.InvoiceTemplateID invoice_template_id
     5: required base.Timestamp invoice_valid_until
     6: required string product
-    10: optional string name
     7: optional string description
     8: optional domain.InvoiceTemplateDetails details
     9: optional domain.InvoiceContext context
+    10: optional string name
+    11: optional InvoiceTemplateStatus invoice_template_status
+    12: optional base.Timestamp invoice_template_created_at
 }
 
 service MerchantStatisticsService {
