@@ -15,7 +15,7 @@ struct InvoiceSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
     2: required PaymentParams payment_params
     3: optional list<domain.InvoiceID> invoice_ids
-    4: optional domain.InvoiceStatus invoice_status
+    4: optional InvoiceStatus invoice_status
     5: optional domain.Amount invoice_amount
     6: optional string external_id
 }
@@ -33,7 +33,7 @@ struct RefundSearchQuery {
     2: optional list<domain.InvoiceID> invoice_ids
     3: optional domain.InvoicePaymentID payment_id
     4: optional domain.InvoicePaymentRefundID refund_id
-    5: optional domain.InvoicePaymentRefundStatus refund_status
+    5: optional InvoicePaymentRefundStatus refund_status
     6: optional string external_id
 }
 
@@ -75,8 +75,8 @@ struct CommonSearchQueryParams {
 struct PaymentParams {
     1: optional domain.InvoicePaymentID payment_id
     2: optional domain.InvoicePaymentStatus payment_status
-    3: optional domain.InvoicePaymentFlow payment_flow
-    4: optional domain.PaymentTool payment_tool
+    3: optional InvoicePaymentFlowType payment_flow
+    4: optional PaymentTool payment_tool
     5: optional domain.LegacyTerminalPaymentProvider payment_terminal_provider
     6: optional string payment_email
     7: optional string payment_ip
@@ -191,6 +191,11 @@ struct CustomerPayer {
     4: optional string email
 }
 
+enum InvoicePaymentFlowType {
+    instant
+    hold
+}
+
 union InvoicePaymentFlow {
     1: InvoicePaymentFlowInstant instant
     2: InvoicePaymentFlowHold hold
@@ -236,75 +241,12 @@ union InvoicePaymentStatus {
     7: InvoicePaymentChargedBack charged_back
 }
 
-union PaymentTool {
-    1: BankCard bank_card
-    2: PaymentTerminal payment_terminal
-    3: DigitalWallet digital_wallet
-    4: CryptoCurrency crypto_currency
-    5: MobileCommerce mobile_commerce
-}
-
-struct MobileCommerce {
-    1: required MobileOperator operator
-    2: required MobilePhone    phone
-}
-
-enum MobileOperator {
-    mts      = 1
-    beeline  = 2
-    megafone = 3
-    tele2    = 4
-    yota     = 5
-}
-
-struct MobilePhone {
-    1: required string cc
-    2: required string ctn
-}
-
-struct BankCard {
-    1: required domain.Token token
-    6: optional domain.PaymentSystemRef payment_system
-    3: required string bin
-    4: required string masked_pan
-    7: optional domain.BankCardTokenServiceRef payment_token
-    /** Deprecated **/
-    2: optional domain.LegacyBankCardPaymentSystem payment_system_deprecated
-    5: optional domain.LegacyBankCardTokenProvider token_provider_deprecated
-}
-
-enum CryptoCurrency {
-    bitcoin
-    litecoin
-    bitcoin_cash
-    ripple
-    ethereum
-    zcash
-}
-
-struct PaymentTerminal {
-    1: required TerminalPaymentProvider terminal_type
-}
-
-enum TerminalPaymentProvider {
-    euroset
-    wechat
-    alipay
-    zotapay
-    qps
-    uzcard
-    rbs // Рунет Бизнес Системы
-}
-
-typedef string DigitalWalletID
-
-struct DigitalWallet {
-    1: required DigitalWalletProvider provider
-    2: required DigitalWalletID       id
-}
-
-enum DigitalWalletProvider {
-    qiwi
+enum PaymentTool {
+    bank_card
+    payment_terminal
+    digital_wallet
+    crypto_currency
+    mobile_commerce
 }
 
 struct StatInvoice {
@@ -312,7 +254,7 @@ struct StatInvoice {
     2: required domain.PartyID owner_id
     3: required domain.ShopID shop_id
     4: required base.Timestamp created_at
-    5: required InvoiceStatus status
+    5: required domain.InvoiceStatus status
     6: required string product
     7: optional string description
     8: required base.Timestamp due
@@ -323,22 +265,11 @@ struct StatInvoice {
     13: optional string external_id
 }
 
-struct InvoiceUnpaid    {}
-struct InvoicePaid      { 1: optional base.Timestamp at }
-struct InvoiceCancelled {
-    1: required string details
-    2: optional base.Timestamp at
-}
-struct InvoiceFulfilled {
-    1: required string details
-    2: optional base.Timestamp at
-}
-
-union InvoiceStatus {
-    1: InvoiceUnpaid unpaid
-    2: InvoicePaid paid
-    3: InvoiceCancelled cancelled
-    4: InvoiceFulfilled fulfilled
+enum InvoiceStatus {
+    unpaid
+    paid
+    cancelled
+    fulfilled
 }
 
 struct StatCustomer {
@@ -378,7 +309,7 @@ struct StatRefund {
     3: required domain.InvoiceID invoice_id
     4: required domain.PartyID owner_id
     5: required domain.ShopID shop_id
-    6: required InvoicePaymentRefundStatus status
+    6: required domain.InvoicePaymentRefundStatus status
     7: required base.Timestamp created_at
     8: required domain.Amount amount
     9: required domain.Amount fee
@@ -388,20 +319,10 @@ struct StatRefund {
     13: optional string external_id
 }
 
-union InvoicePaymentRefundStatus {
-    1: InvoicePaymentRefundPending pending
-    2: InvoicePaymentRefundSucceeded succeeded
-    3: InvoicePaymentRefundFailed failed
-}
-
-struct InvoicePaymentRefundPending {}
-struct InvoicePaymentRefundSucceeded {
-    1: required base.Timestamp at
-}
-
-struct InvoicePaymentRefundFailed {
-    1: required OperationFailure failure
-    2: required base.Timestamp at
+enum InvoicePaymentRefundStatus {
+    pending
+    succeeded
+    failed
 }
 
 typedef map<string, string> StatInfo
