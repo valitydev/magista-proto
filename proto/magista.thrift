@@ -74,7 +74,7 @@ struct CommonSearchQueryParams {
 
 struct PaymentParams {
     1: optional domain.InvoicePaymentID payment_id
-    2: optional domain.InvoicePaymentStatus payment_status
+    2: optional InvoicePaymentStatus payment_status
     3: optional InvoicePaymentFlowType payment_flow
     4: optional PaymentTool payment_tool
     5: optional domain.LegacyTerminalPaymentProvider payment_terminal_provider
@@ -155,6 +155,8 @@ struct StatPayment {
     20: optional string external_id
     21: optional domain.ProviderRef provider_id
     22: optional domain.TerminalRef terminal_id
+    23: optional base.Timestamp status_changed_at
+    24: optional OperationFailure failure
 }
 
 union Payer {
@@ -220,25 +222,14 @@ union OperationFailure {
 
 struct OperationTimeout {}
 
-struct InvoicePaymentPending   {}
-struct InvoicePaymentProcessed { 1: optional base.Timestamp at }
-struct InvoicePaymentCaptured  { 1: optional base.Timestamp at }
-struct InvoicePaymentCancelled { 1: optional base.Timestamp at }
-struct InvoicePaymentRefunded  { 1: optional base.Timestamp at }
-struct InvoicePaymentChargedBack { 1: optional base.Timestamp at }
-struct InvoicePaymentFailed    {
-    1: required OperationFailure failure
-    2: optional base.Timestamp at
-}
-
-union InvoicePaymentStatus {
-    1: InvoicePaymentPending pending
-    4: InvoicePaymentProcessed processed
-    2: InvoicePaymentCaptured captured
-    5: InvoicePaymentCancelled cancelled
-    6: InvoicePaymentRefunded refunded
-    3: InvoicePaymentFailed failed
-    7: InvoicePaymentChargedBack charged_back
+enum InvoicePaymentStatus {
+    pending
+    processed
+    captured
+    cancelled
+    refunded
+    failed
+    charged_back
 }
 
 enum PaymentTool {
