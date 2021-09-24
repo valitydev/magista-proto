@@ -76,7 +76,7 @@ struct PaymentParams {
     1: optional domain.InvoicePaymentID payment_id
     2: optional InvoicePaymentStatus payment_status
     3: optional InvoicePaymentFlowType payment_flow
-    4: optional PaymentTool payment_tool
+    4: optional PaymentToolType payment_tool
     5: optional domain.LegacyTerminalPaymentProvider payment_terminal_provider
     6: optional string payment_email
     7: optional string payment_ip
@@ -232,12 +232,83 @@ enum InvoicePaymentStatus {
     charged_back
 }
 
-enum PaymentTool {
+enum PaymentToolType {
     bank_card
     payment_terminal
     digital_wallet
     crypto_currency
     mobile_commerce
+}
+
+union PaymentTool {
+    1: BankCard bank_card
+    2: PaymentTerminal payment_terminal
+    3: DigitalWallet digital_wallet
+    4: CryptoCurrency crypto_currency
+    5: MobileCommerce mobile_commerce
+}
+
+struct BankCard {
+    1: required domain.Token token
+    6: optional domain.PaymentSystemRef payment_system
+    3: required string bin
+    4: required string masked_pan
+    7: optional domain.BankCardTokenServiceRef payment_token
+    /** Deprecated **/
+    2: optional domain.LegacyBankCardPaymentSystem payment_system_deprecated
+    5: optional domain.LegacyBankCardTokenProvider token_provider_deprecated
+}
+
+enum CryptoCurrency {
+    bitcoin
+    litecoin
+    bitcoin_cash
+    ripple
+    ethereum
+    zcash
+}
+
+struct MobileCommerce {
+    1: required MobileOperator operator
+    2: required MobilePhone    phone
+}
+
+enum MobileOperator {
+    mts      = 1
+    beeline  = 2
+    megafone = 3
+    tele2    = 4
+    yota     = 5
+}
+
+struct MobilePhone {
+    1: required string cc
+    2: required string ctn
+}
+
+struct PaymentTerminal {
+    1: required TerminalPaymentProvider terminal_type
+}
+
+enum TerminalPaymentProvider {
+    euroset
+    wechat
+    alipay
+    zotapay
+    qps
+    uzcard
+    rbs // Рунет Бизнес Системы
+}
+
+typedef string DigitalWalletID
+
+struct DigitalWallet {
+    1: required DigitalWalletProvider provider
+    2: required DigitalWalletID       id
+}
+
+enum DigitalWalletProvider {
+    qiwi
 }
 
 struct StatInvoice {
