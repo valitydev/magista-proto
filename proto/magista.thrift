@@ -276,7 +276,7 @@ struct PaymentTerminal {
 typedef string DigitalWalletID
 
 struct DigitalWallet {
-    1: required domain.DigitalWalletProvider provider
+    1: required domain.LegacyDigitalWalletProvider provider
     2: required DigitalWalletID       id
 }
 
