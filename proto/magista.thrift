@@ -244,7 +244,7 @@ union PaymentTool {
     1: BankCard bank_card
     2: PaymentTerminal payment_terminal
     3: DigitalWallet digital_wallet
-    4: CryptoCurrency crypto_currency
+    4: domain.CryptoCurrency crypto_currency
     5: MobileCommerce mobile_commerce
 }
 
@@ -259,26 +259,9 @@ struct BankCard {
     5: optional domain.LegacyBankCardTokenProvider token_provider_deprecated
 }
 
-enum CryptoCurrency {
-    bitcoin
-    litecoin
-    bitcoin_cash
-    ripple
-    ethereum
-    zcash
-}
-
 struct MobileCommerce {
-    1: required MobileOperator operator
+    1: required domain.MobileOperator operator
     2: required MobilePhone    phone
-}
-
-enum MobileOperator {
-    mts      = 1
-    beeline  = 2
-    megafone = 3
-    tele2    = 4
-    yota     = 5
 }
 
 struct MobilePhone {
@@ -287,28 +270,14 @@ struct MobilePhone {
 }
 
 struct PaymentTerminal {
-    1: required TerminalPaymentProvider terminal_type
-}
-
-enum TerminalPaymentProvider {
-    euroset
-    wechat
-    alipay
-    zotapay
-    qps
-    uzcard
-    rbs // Рунет Бизнес Системы
+    1: required domain.LegacyTerminalPaymentProvider terminal_type
 }
 
 typedef string DigitalWalletID
 
 struct DigitalWallet {
-    1: required DigitalWalletProvider provider
+    1: required domain.DigitalWalletProvider provider
     2: required DigitalWalletID       id
-}
-
-enum DigitalWalletProvider {
-    qiwi
 }
 
 struct StatInvoice {
