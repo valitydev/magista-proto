@@ -156,41 +156,19 @@ struct StatPayment {
     21: optional domain.ProviderRef provider_id
     22: optional domain.TerminalRef terminal_id
     23: optional base.Timestamp status_changed_at
-    24: optional OperationFailure failure
+    24: optional domain.OperationFailure failure
 }
 
 union Payer {
-    1: PaymentResourcePayer payment_resource
+    1: domain.PaymentResourcePayer payment_resource
     2: CustomerPayer        customer
-    3: RecurrentPayer       recurrent
-}
-
-struct RecurrentParentPayment {
-    1: required domain.InvoiceID invoice_id
-    2: required domain.InvoicePaymentID payment_id
-}
-
-struct RecurrentPayer {
-    1: required PaymentTool payment_tool
-    2: required RecurrentParentPayment recurrent_parent
-    3: optional string phone_number
-    4: optional string email
-}
-
-struct PaymentResourcePayer {
-    1: required PaymentTool payment_tool
-    2: optional domain.IPAddress ip_address
-    3: optional domain.Fingerprint fingerprint
-    4: optional string phone_number
-    5: optional string email
-    6: optional domain.PaymentSessionID session_id
+    3: domain.RecurrentPayer       recurrent
 }
 
 struct CustomerPayer {
     1: required domain.CustomerID customer_id
-    2: required PaymentTool payment_tool
-    3: optional string phone_number
-    4: optional string email
+    2: required domain.PaymentTool payment_tool
+    3: optional domain.ContactInfo contact_info
 }
 
 enum InvoicePaymentFlowType {
@@ -215,13 +193,6 @@ enum OnHoldExpiration {
     capture
 }
 
-union OperationFailure {
-    1: OperationTimeout operation_timeout
-    2: domain.Failure  failure
-}
-
-struct OperationTimeout {}
-
 enum InvoicePaymentStatus {
     pending
     processed
@@ -238,46 +209,6 @@ enum PaymentToolType {
     digital_wallet
     crypto_currency
     mobile_commerce
-}
-
-union PaymentTool {
-    1: BankCard bank_card
-    2: PaymentTerminal payment_terminal
-    3: DigitalWallet digital_wallet
-    4: domain.CryptoCurrency crypto_currency
-    5: MobileCommerce mobile_commerce
-}
-
-struct BankCard {
-    1: required domain.Token token
-    6: optional domain.PaymentSystemRef payment_system
-    3: required string bin
-    4: required string masked_pan
-    7: optional domain.BankCardTokenServiceRef payment_token
-    /** Deprecated **/
-    2: optional domain.LegacyBankCardPaymentSystem payment_system_deprecated
-    5: optional domain.LegacyBankCardTokenProvider token_provider_deprecated
-}
-
-struct MobileCommerce {
-    1: required domain.MobileOperator operator
-    2: required MobilePhone    phone
-}
-
-struct MobilePhone {
-    1: required string cc
-    2: required string ctn
-}
-
-struct PaymentTerminal {
-    1: required domain.LegacyTerminalPaymentProvider terminal_type
-}
-
-typedef string DigitalWalletID
-
-struct DigitalWallet {
-    1: required domain.LegacyDigitalWalletProvider provider
-    2: required DigitalWalletID       id
 }
 
 struct StatInvoice {
