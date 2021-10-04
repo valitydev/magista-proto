@@ -51,7 +51,13 @@ struct PayoutSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
     2: optional payout_manager.PayoutID payout_id
     3: optional list<payout_manager.PayoutStatus> payout_statuses
-    4: optional domain.PayoutToolInfo payout_type
+    4: optional PayoutToolType payout_type
+}
+
+enum PayoutToolType {
+    payout_account
+    wallet
+    payment_institution_account
 }
 
 struct InvoiceTemplateSearchQuery {
