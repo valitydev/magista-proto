@@ -51,7 +51,13 @@ struct PayoutSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
     2: optional payout_manager.PayoutID payout_id
     3: optional list<payout_manager.PayoutStatus> payout_statuses
-    4: optional domain.PayoutToolInfo payout_type
+    4: optional PayoutToolType payout_type
+}
+
+enum PayoutToolType {
+    payout_account
+    wallet
+    payment_institution_account
 }
 
 struct InvoiceTemplateSearchQuery {
@@ -76,7 +82,7 @@ struct PaymentParams {
     1: optional domain.InvoicePaymentID payment_id
     2: optional InvoicePaymentStatus payment_status
     3: optional InvoicePaymentFlowType payment_flow
-    4: optional PaymentTool payment_tool
+    4: optional PaymentToolType payment_tool
     5: optional domain.LegacyTerminalPaymentProvider payment_terminal_provider
     6: optional string payment_email
     7: optional string payment_ip
@@ -156,41 +162,19 @@ struct StatPayment {
     21: optional domain.ProviderRef provider_id
     22: optional domain.TerminalRef terminal_id
     23: optional base.Timestamp status_changed_at
-    24: optional OperationFailure failure
+    24: optional domain.OperationFailure failure
 }
 
 union Payer {
-    1: PaymentResourcePayer payment_resource
+    1: domain.PaymentResourcePayer payment_resource
     2: CustomerPayer        customer
-    3: RecurrentPayer       recurrent
-}
-
-struct RecurrentParentPayment {
-    1: required domain.InvoiceID invoice_id
-    2: required domain.InvoicePaymentID payment_id
-}
-
-struct RecurrentPayer {
-    1: required PaymentTool payment_tool
-    2: required RecurrentParentPayment recurrent_parent
-    3: optional string phone_number
-    4: optional string email
-}
-
-struct PaymentResourcePayer {
-    1: required PaymentTool payment_tool
-    2: optional domain.IPAddress ip_address
-    3: optional domain.Fingerprint fingerprint
-    4: optional string phone_number
-    5: optional string email
-    6: optional domain.PaymentSessionID session_id
+    3: domain.RecurrentPayer       recurrent
 }
 
 struct CustomerPayer {
     1: required domain.CustomerID customer_id
-    2: required PaymentTool payment_tool
-    3: optional string phone_number
-    4: optional string email
+    2: required domain.PaymentTool payment_tool
+    3: optional domain.ContactInfo contact_info
 }
 
 enum InvoicePaymentFlowType {
@@ -215,13 +199,6 @@ enum OnHoldExpiration {
     capture
 }
 
-union OperationFailure {
-    1: OperationTimeout operation_timeout
-    2: domain.Failure  failure
-}
-
-struct OperationTimeout {}
-
 enum InvoicePaymentStatus {
     pending
     processed
@@ -232,7 +209,7 @@ enum InvoicePaymentStatus {
     charged_back
 }
 
-enum PaymentTool {
+enum PaymentToolType {
     bank_card
     payment_terminal
     digital_wallet
