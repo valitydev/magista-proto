@@ -145,7 +145,7 @@ struct StatPayment {
     3: required domain.PartyID owner_id
     4: required domain.ShopID shop_id
     5: required base.Timestamp created_at
-    6: required InvoicePaymentStatus status
+    6: required domain.InvoicePaymentStatus status
     7: required domain.Amount amount
     8: required domain.Amount fee
     9: required string currency_symbolic_code
