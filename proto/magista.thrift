@@ -162,7 +162,6 @@ struct StatPayment {
     21: optional domain.ProviderRef provider_id
     22: optional domain.TerminalRef terminal_id
     23: optional base.Timestamp status_changed_at
-    24: optional domain.OperationFailure failure
 }
 
 union Payer {
@@ -231,6 +230,7 @@ struct StatInvoice {
     11: optional base.Content context
     12: optional domain.InvoiceCart cart
     13: optional string external_id
+    14: optional base.Timestamp status_changed_at
 }
 
 enum InvoiceStatus {
@@ -285,6 +285,7 @@ struct StatRefund {
     11: optional string reason
     12: optional domain.InvoiceCart cart
     13: optional string external_id
+    14: optional base.Timestamp status_changed_at
 }
 
 enum InvoicePaymentRefundStatus {
