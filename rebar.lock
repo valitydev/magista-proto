@@ -4,5 +4,5 @@
   0},
   {<<"payout_manager_proto">>,
     {git,"https://github.com/valitydev/payout-manager-proto.git",
-         {ref,"b2e84a55e976e4f75eeea8fe7e65e2a671a6245a"}},
+         {ref,"5bf4fad7183e34b9ef0e53be86c524ea2ae121ad"}},
     0}].
