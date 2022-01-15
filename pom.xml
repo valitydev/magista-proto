@@ -5,71 +5,76 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.rbkmoney</groupId>
-        <artifactId>parent</artifactId>
-        <version>1.0.5</version>
+        <groupId>dev.vality</groupId>
+        <artifactId>library-parent-pom</artifactId>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>magista-proto</artifactId>
-    <version>SNAPSHOT</version>
+    <version>${revision}</version>
     <packaging>jar</packaging>
 
     <name>magista-proto</name>
-    <description>Generates jar artifact containing compiled thrift classes based on generated thrift IDL files</description>
-    <url>https://github.com/rbkmoney/magista-proto.git</url>
+    <description>Generates jar artifact containing compiled thrift classes based on generated thrift IDL files
+    </description>
+    <url>https://github.com/valitydev/magista-proto</url>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
-            <organization>RBK.money</organization>
-            <organizationUrl>https://rbk.money</organizationUrl>
+            <email>devs@vality.dev</email>
+            <organization>Vality</organization>
+            <organizationUrl>https://vality.dev</organizationUrl>
         </developer>
     </developers>
 
     <scm>
-        <connection>scm:git:git://github.com/rbkmoney/magista-proto.git</connection>
-        <developerConnection>scm:git:ssh://github.com/rbkmoney/magista-proto.git</developerConnection>
-        <url>https://github.com/rbkmoney/magista-proto/tree/master</url>
+        <connection>scm:git:git://github.com/valitydev/magista-proto</connection>
+        <developerConnection>scm:git:ssh://github.com/valitydev/magista-proto</developerConnection>
+        <url>https://github.com/valitydev/magista-proto/tree/master</url>
     </scm>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <revision>SNAPSHOT</revision>
     </properties>
 
     <dependencies>
-        <!--rbkmoney-->
         <dependency>
-            <groupId>com.rbkmoney.woody</groupId>
+            <groupId>dev.vality.woody</groupId>
             <artifactId>woody-thrift</artifactId>
-            <version>[1.1.21,)</version>
+            <version>1.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.rbkmoney</groupId>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>1.3.2</version>
+        </dependency>
+        <dependency>
+            <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.513-fcb8e91</version>
+            <version>1.538-5addc41</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.rbkmoney</groupId>
+            <groupId>dev.vality</groupId>
             <artifactId>payout-manager-proto</artifactId>
-            <version>1.21-bdd9888</version>
+            <version>1.22-b2e84a5</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
-        <resources>
-            <resource>
-                <directory>${project.basedir}/proto</directory>
-                <targetPath>${project.build.outputDirectory}/proto</targetPath>
-                <includes>
-                    <include>*.thrift</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
         <plugins>
+            <!-- THRIFT -->
             <plugin>
                 <groupId>org.apache.thrift</groupId>
                 <artifactId>thrift-maven-plugin</artifactId>
@@ -92,7 +97,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.0.0</version>
+                <version>3.2.4</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
@@ -102,8 +107,8 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>com.rbkmoney.magista</pattern>
-                                    <shadedPattern>com.rbkmoney.magista.v${commit.number}</shadedPattern>
+                                    <pattern>dev.vality.damsel</pattern>
+                                    <shadedPattern>dev.vality.damsel.v${commit.number}</shadedPattern>
                                 </relocation>
                             </relocations>
                             <shadedArtifactAttached>true</shadedArtifactAttached>

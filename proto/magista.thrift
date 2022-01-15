@@ -3,7 +3,7 @@ include "proto/domain.thrift"
 include "proto/payout_manager.thrift"
 include "proto/geo_ip.thrift"
 
-namespace java com.rbkmoney.magista
+namespace java dev.vality.magista
 namespace erlang magista
 
 typedef string ContinuationToken
