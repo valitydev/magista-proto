@@ -72,7 +72,7 @@ struct InvoiceTemplateSearchQuery {
 struct CommonSearchQueryParams {
     1: required base.Timestamp to_time
     2: required base.Timestamp from_time
-    3: required domain.PartyID party_id
+    3: optional domain.PartyID party_id
     4: optional list<domain.ShopID> shop_ids
     5: optional ContinuationToken continuation_token
     6: optional i32 limit
