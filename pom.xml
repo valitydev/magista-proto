@@ -60,13 +60,13 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.544-dcd92dd</version>
+            <version>1.551-df1c52f</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>payout-manager-proto</artifactId>
-            <version>1.23-5bf4fad</version>
+            <version>1.27-1fac5a3</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -117,8 +117,8 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>dev.vality.damsel</pattern>
-                                    <shadedPattern>dev.vality.damsel.v${commit.number}</shadedPattern>
+                                    <pattern>dev.vality.magista</pattern>
+                                    <shadedPattern>dev.vality.magista.v${commit.number}</shadedPattern>
                                 </relocation>
                             </relocations>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
