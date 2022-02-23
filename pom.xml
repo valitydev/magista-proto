@@ -117,8 +117,8 @@
                         <configuration>
                             <relocations>
                                 <relocation>
-                                    <pattern>dev.vality.damsel</pattern>
-                                    <shadedPattern>dev.vality.damsel.v${commit.number}</shadedPattern>
+                                    <pattern>dev.vality.magista</pattern>
+                                    <shadedPattern>dev.vality.magista.v${commit.number}</shadedPattern>
                                 </relocation>
                             </relocations>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
