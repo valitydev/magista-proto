@@ -1,8 +1,8 @@
 [{<<"damsel">>,
   {git,"https://github.com/valitydev/damsel.git",
-       {ref,"5addc419f26de2cd00294865feea3d997d308d77"}},
+       {ref,"df1c52f2ebe175fabe1da4aec8ac889b2dd03a0b"}},
   0},
   {<<"payout_manager_proto">>,
     {git,"https://github.com/valitydev/payout-manager-proto.git",
-         {ref,"5bf4fad7183e34b9ef0e53be86c524ea2ae121ad"}},
+         {ref,"1fac5a36c6b315625e77509371a44ebe543c96df"}},
     0}].

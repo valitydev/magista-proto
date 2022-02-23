@@ -1,7 +1,6 @@
 include "proto/base.thrift"
 include "proto/domain.thrift"
 include "proto/payout_manager.thrift"
-include "proto/geo_ip.thrift"
 
 namespace java dev.vality.magista
 namespace erlang magista
@@ -151,17 +150,16 @@ struct StatPayment {
     9: required string currency_symbolic_code
     10: required Payer payer
     12: optional base.Content context
-    13: optional geo_ip.LocationInfo location_info
-    14: required InvoicePaymentFlow flow
-    15: optional string short_id
-    16: optional bool make_recurrent
-    17: required domain.DataRevision domain_revision
-    18: optional domain.InvoiceCart cart
-    19: optional domain.AdditionalTransactionInfo additional_transaction_info
-    20: optional string external_id
-    21: optional domain.ProviderRef provider_id
-    22: optional domain.TerminalRef terminal_id
-    23: optional base.Timestamp status_changed_at
+    13: required InvoicePaymentFlow flow
+    14: optional string short_id
+    15: optional bool make_recurrent
+    16: required domain.DataRevision domain_revision
+    17: optional domain.InvoiceCart cart
+    18: optional domain.AdditionalTransactionInfo additional_transaction_info
+    19: optional string external_id
+    20: optional domain.ProviderRef provider_id
+    21: optional domain.TerminalRef terminal_id
+    22: optional base.Timestamp status_changed_at
 }
 
 union Payer {
