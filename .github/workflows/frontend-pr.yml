@@ -18,6 +18,8 @@ jobs:
           node-version: '16.13.2'
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
+      - name: Init Thrift
+        uses: valitydev/action-setup-thrift@v1.0.0
       - name: Install Packages
         run: npm ci
       - name: Build
