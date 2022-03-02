@@ -1,13 +1,12 @@
 name: Frontend Build & Publish
 
 on:
-  pull_request:
-    branches:
-      - '*'
+  push:
+    branches: [master]
 
 jobs:
   build:
-    name: Build
+    name: Build & Publish
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

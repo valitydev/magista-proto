@@ -1,4 +1,4 @@
-name: Frontend Build & Publish
+name: Frontend PR Check
 
 on:
   pull_request:
@@ -6,8 +6,8 @@ on:
       - '*'
 
 jobs:
-  build:
-    name: Build
+  check:
+    name: Check
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
