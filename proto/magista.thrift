@@ -49,7 +49,7 @@ struct ChargebackSearchQuery {
 struct PayoutSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
     2: optional payout_manager.PayoutID payout_id
-    3: optional list<payout_manager.PayoutStatus> payout_statuses
+    3: optional list<PayoutStatusType> payout_status_types
     4: optional PayoutToolType payout_type
 }
 
@@ -57,6 +57,13 @@ enum PayoutToolType {
     payout_account
     wallet
     payment_institution_account
+}
+
+enum PayoutStatusType {
+    unpaid
+    paid
+    cancelled
+    confirmed
 }
 
 struct InvoiceTemplateSearchQuery {
