@@ -21,7 +21,7 @@
   "types": "./lib/magista.d.ts",
   "devDependencies": {
     "@vality/payout-manager-proto": "github:valitydev/payout-manager-proto#3d7e1c5e69a186c263d00b567ea49255905bce06",
-    "@vality/thrift-codegen": "^0.1.1-e636464.0",
+    "@vality/thrift-codegen": "0.1.1-e636464.0",
     "damsel": "github:valitydev/damsel#df1c52f2ebe175fabe1da4aec8ac889b2dd03a0b"
   }
 }
