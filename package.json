@@ -15,13 +15,14 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/magista-proto#readme",
   "files": [
-    "lib/**/*.{js,d.ts,json}"
+    "lib/**/*.{js,d.ts,json}",
+    "**/*.thrift"
   ],
   "main": "./lib/magista.js",
   "types": "./lib/magista.d.ts",
   "devDependencies": {
-    "@vality/payout-manager-proto": "github:valitydev/payout-manager-proto#3d7e1c5e69a186c263d00b567ea49255905bce06",
-    "@vality/thrift-codegen": "^0.1.1-e636464.0",
-    "damsel": "github:valitydev/damsel#df1c52f2ebe175fabe1da4aec8ac889b2dd03a0b"
+    "@vality/payout-manager-proto": "github:valitydev/payout-manager-proto#dbed28076d37a4988f8dadb58661cfeb30760966",
+    "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
+    "damsel": "github:valitydev/damsel#3efe7dffaae0f40a77dead166a52f8c9108f2d8d"
   }
 }
