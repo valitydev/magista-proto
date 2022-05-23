@@ -4,7 +4,9 @@ include "proto/domain.thrift"
 namespace java dev.vality.magista
 namespace erlang magista
 
+// See https://github.com/valitydev/payout-manager-proto/blob/063163dc/proto/payout_manager.thrift#L7
 typedef base.ID PayoutID
+
 typedef string ContinuationToken
 
 exception BadContinuationToken { 1: string reason }
@@ -249,8 +251,6 @@ struct StatCustomer {
     1: required domain.Fingerprint id
     2: required base.Timestamp created_at
 }
-
-typedef base.ID PayoutID
 
 struct StatPayout {
     1: required PayoutID id
