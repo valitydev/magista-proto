@@ -2,7 +2,7 @@
   {git,"https://github.com/valitydev/damsel.git",
        {ref,"df1c52f2ebe175fabe1da4aec8ac889b2dd03a0b"}},
   0},
-  {<<"payout_manager_proto">>,
-    {git,"https://github.com/valitydev/payout-manager-proto.git",
-         {ref,"1fac5a36c6b315625e77509371a44ebe543c96df"}},
-    0}].
+ {<<"payout_manager_proto">>,
+  {git,"https://github.com/valitydev/payout-manager-proto.git",
+       {ref,"1fac5a36c6b315625e77509371a44ebe543c96df"}},
+  0}].

@@ -1,9 +1,11 @@
 include "proto/base.thrift"
 include "proto/domain.thrift"
-include "proto/payout_manager.thrift"
 
 namespace java dev.vality.magista
 namespace erlang magista
+
+// See https://github.com/valitydev/payout-manager-proto/blob/063163dc/proto/payout_manager.thrift#L7
+typedef base.ID PayoutID
 
 typedef string ContinuationToken
 
@@ -48,7 +50,7 @@ struct ChargebackSearchQuery {
 
 struct PayoutSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
-    2: optional payout_manager.PayoutID payout_id
+    2: optional PayoutID payout_id
     3: optional list<PayoutStatusType> payout_status_types
     4: optional PayoutToolType payout_type
 }
@@ -249,8 +251,6 @@ struct StatCustomer {
     1: required domain.Fingerprint id
     2: required base.Timestamp created_at
 }
-
-typedef base.ID PayoutID
 
 struct StatPayout {
     1: required PayoutID id
