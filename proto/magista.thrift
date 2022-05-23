@@ -1,10 +1,10 @@
 include "proto/base.thrift"
 include "proto/domain.thrift"
-include "proto/payout_manager.thrift"
 
 namespace java dev.vality.magista
 namespace erlang magista
 
+typedef base.ID PayoutID
 typedef string ContinuationToken
 
 exception BadContinuationToken { 1: string reason }
@@ -48,7 +48,7 @@ struct ChargebackSearchQuery {
 
 struct PayoutSearchQuery {
     1: required CommonSearchQueryParams common_search_query_params
-    2: optional payout_manager.PayoutID payout_id
+    2: optional PayoutID payout_id
     3: optional list<PayoutStatusType> payout_status_types
     4: optional PayoutToolType payout_type
 }

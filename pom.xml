@@ -63,12 +63,6 @@
             <version>1.551-df1c52f</version>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>dev.vality</groupId>
-            <artifactId>payout-manager-proto</artifactId>
-            <version>1.27-1fac5a3</version>
-            <scope>provided</scope>
-        </dependency>
     </dependencies>
 
     <build>
