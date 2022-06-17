@@ -2,7 +2,7 @@ include "proto/base.thrift"
 include "proto/domain.thrift"
 
 namespace java dev.vality.magista
-namespace erlang magista
+namespace erlang magista.magista
 
 // See https://github.com/valitydev/payout-manager-proto/blob/063163dc/proto/payout_manager.thrift#L7
 typedef base.ID PayoutID
