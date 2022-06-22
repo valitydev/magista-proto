@@ -91,12 +91,12 @@ struct PaymentParams {
     2: optional InvoicePaymentStatus payment_status
     3: optional InvoicePaymentFlowType payment_flow
     4: optional PaymentToolType payment_tool
-    5: optional domain.LegacyTerminalPaymentProvider payment_terminal_provider
+    5: optional domain.PaymentServiceRef payment_terminal_provider
     6: optional string payment_email
     7: optional string payment_ip
     8: optional string payment_fingerprint
     9: optional string payment_first6
-    10: optional domain.LegacyBankCardPaymentSystem payment_system
+    10: optional domain.PaymentSystemRef payment_system
     12: optional string payment_last4
     11: optional domain.CustomerID payment_customer_id
     13: optional string payment_provider_id
@@ -109,7 +109,7 @@ struct PaymentParams {
     20: optional string payment_approval_code
     21: optional domain.Amount payment_amount_from
     22: optional domain.Amount payment_amount_to
-    23: optional domain.LegacyBankCardTokenProvider payment_token_provider
+    23: optional domain.BankCardTokenServiceRef payment_token_provider
 }
 
 enum InvoiceTemplateStatus {
