@@ -113,9 +113,9 @@ struct PaymentParams {
     26: optional domain.BankCardTokenServiceRef payment_token_provider
 
     // Deprecated
-    5: optional domain.LegacyTerminalPaymentProvider legacy_payment_terminal_provider
-    10: optional domain.LegacyBankCardPaymentSystem legacy_payment_system
-    23: optional domain.LegacyBankCardTokenProvider legacy_payment_token_provider
+//    5: optional domain.LegacyTerminalPaymentProvider legacy_payment_terminal_provider
+//    10: optional domain.LegacyBankCardPaymentSystem legacy_payment_system
+//    23: optional domain.LegacyBankCardTokenProvider legacy_payment_token_provider
 
 }
 
