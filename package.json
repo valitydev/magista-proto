@@ -22,6 +22,6 @@
   "types": "./lib/magista.d.ts",
   "devDependencies": {
     "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
-    "damsel": "github:valitydev/damsel#3efe7dffaae0f40a77dead166a52f8c9108f2d8d"
+    "damsel": "github:valitydev/damsel#9362c08657d1681240d70f923fc04642bbfecc0a"
   }
 }
