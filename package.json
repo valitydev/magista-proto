@@ -1,12 +1,17 @@
 {
   "name": "@vality/magista-proto",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "scripts": {
-    "codegen": "thrift-codegen"
+    "codegen": "thrift-codegen --i ./proto ./node_modules/@vality/domain-proto --n magista"
   },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "exports": {
+    ".": "./dist/thrift-codegen.bundle.js",
+    "./metadata.json": "./dist/metadata.json",
+    "./package.json": "./package.json"
   },
   "repository": {
     "type": "git",
@@ -15,13 +20,13 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/magista-proto#readme",
   "files": [
-    "lib/**/*.{js,d.ts,json}",
+    "dist/**/*.{js,d.ts,json,map}",
     "**/*.thrift"
   ],
-  "main": "./lib/magista.js",
-  "types": "./lib/magista.d.ts",
+  "main": "./dist/thrift-codegen.bundle.js",
+  "types": "index.d.ts",
   "devDependencies": {
-    "@vality/thrift-codegen": "0.1.1-c81b4b7.0",
-    "damsel": "github:valitydev/damsel#3efe7dffaae0f40a77dead166a52f8c9108f2d8d"
+    "@vality/domain-proto": "2.0.1-7218614.0",
+    "@vality/thrift-codegen": "2.0.1-7608479.0"
   }
 }

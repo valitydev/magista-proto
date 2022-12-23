@@ -82,4 +82,5 @@ env.list
 
 # frontend
 node_modules
-lib
+clients
+dist
