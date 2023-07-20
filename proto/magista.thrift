@@ -46,6 +46,7 @@ struct ChargebackSearchQuery {
     5: optional list<domain.InvoicePaymentChargebackStatus> chargeback_statuses
     6: optional list<domain.InvoicePaymentChargebackStage> chargeback_stages
     7: optional list<domain.InvoicePaymentChargebackCategory> chargeback_categories
+    8: optional list<domain.InvoicePaymentChargebackID> chargeback_ids
 }
 
 struct PayoutSearchQuery {
