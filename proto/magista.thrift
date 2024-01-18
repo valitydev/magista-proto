@@ -112,6 +112,7 @@ struct PaymentParams {
     21: optional domain.Amount payment_amount_from
     22: optional domain.Amount payment_amount_to
     26: optional domain.BankCardTokenServiceRef payment_token_provider
+    27: optional string error_message
 
     // Deprecated
 //    5: optional domain.LegacyTerminalPaymentProvider legacy_payment_terminal_provider
