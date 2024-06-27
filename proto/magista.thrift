@@ -4,9 +4,6 @@ include "proto/domain.thrift"
 namespace java dev.vality.magista
 namespace erlang magista.magista
 
-// See https://github.com/valitydev/payout-manager-proto/blob/063163dc/proto/payout_manager.thrift#L7
-typedef base.ID PayoutID
-
 typedef string ContinuationToken
 
 exception BadContinuationToken { 1: string reason }
@@ -47,26 +44,6 @@ struct ChargebackSearchQuery {
     6: optional list<domain.InvoicePaymentChargebackStage> chargeback_stages
     7: optional list<domain.InvoicePaymentChargebackCategory> chargeback_categories
     8: optional list<domain.InvoicePaymentChargebackID> chargeback_ids
-}
-
-struct PayoutSearchQuery {
-    1: required CommonSearchQueryParams common_search_query_params
-    2: optional PayoutID payout_id
-    3: optional list<PayoutStatusType> payout_status_types
-    4: optional PayoutToolType payout_type
-}
-
-enum PayoutToolType {
-    payout_account
-    wallet
-    payment_institution_account
-}
-
-enum PayoutStatusType {
-    unpaid
-    paid
-    cancelled
-    confirmed
 }
 
 struct InvoiceTemplateSearchQuery {
@@ -143,11 +120,6 @@ struct StatRefundResponse {
 
 struct StatChargebackResponse {
     1: required list<StatChargeback> chargebacks
-    2: optional string continuation_token
-}
-
-struct StatPayoutResponse {
-    1: required list<StatPayout> payouts
     2: optional string continuation_token
 }
 
@@ -261,30 +233,6 @@ struct StatCustomer {
     2: required base.Timestamp created_at
 }
 
-struct StatPayout {
-    1: required PayoutID id
-    2: required domain.PartyID party_id
-    3: required domain.ShopID shop_id
-    4: required base.Timestamp created_at
-    5: required PayoutStatus status
-    6: required domain.Amount amount
-    7: required domain.Amount fee
-    8: required string currency_symbolic_code
-    9: required domain.PayoutToolInfo payout_tool_info
-}
-
-union PayoutStatus {
-    1: PayoutUnpaid unpaid
-    2: PayoutPaid paid
-    3: PayoutCancelled cancelled
-    4: PayoutConfirmed confirmed
-}
-
-struct PayoutUnpaid {}
-struct PayoutPaid {}
-struct PayoutCancelled { 1: required string details }
-struct PayoutConfirmed {}
-
 struct StatRefund {
     1: required domain.InvoicePaymentRefundID id
     2: required domain.InvoicePaymentID payment_id
@@ -359,9 +307,6 @@ service MerchantStatisticsService {
         throws (1: BadContinuationToken ex1, 2: LimitExceeded ex2, 3: base.InvalidRequest ex3)
 
     StatChargebackResponse SearchChargebacks (1: ChargebackSearchQuery chargeback_search_query)
-        throws (1: BadContinuationToken ex1, 2: LimitExceeded ex2, 3: base.InvalidRequest ex3)
-
-    StatPayoutResponse SearchPayouts (1: PayoutSearchQuery payout_search_query)
         throws (1: BadContinuationToken ex1, 2: LimitExceeded ex2, 3: base.InvalidRequest ex3)
 
     StatInvoiceTemplateResponse SearchInvoiceTemplates (1: InvoiceTemplateSearchQuery invoice_template_search_query)
