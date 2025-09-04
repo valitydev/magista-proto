@@ -62,7 +62,7 @@
         <dependency>
             <groupId>dev.vality</groupId>
             <artifactId>damsel</artifactId>
-            <version>1.668-8cab698</version>
+            <version>1.676-ebe97fb-epic-1</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
