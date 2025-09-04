@@ -77,7 +77,6 @@ struct PaymentParams {
     9: optional string payment_first6
     25: optional domain.PaymentSystemRef payment_system
     12: optional string payment_last4
-    11: optional domain.CustomerID payment_customer_id
     13: optional string payment_provider_id
     14: optional string payment_terminal_id
     15: optional domain.Amount payment_amount
@@ -154,14 +153,7 @@ struct StatPayment {
 
 union Payer {
     1: domain.PaymentResourcePayer payment_resource
-    2: CustomerPayer        customer
     3: domain.RecurrentPayer       recurrent
-}
-
-struct CustomerPayer {
-    1: required domain.CustomerID customer_id
-    2: required domain.PaymentTool payment_tool
-    3: optional domain.ContactInfo contact_info
 }
 
 enum InvoicePaymentFlowType {
@@ -226,11 +218,6 @@ enum InvoiceStatus {
     paid
     cancelled
     fulfilled
-}
-
-struct StatCustomer {
-    1: required domain.Fingerprint id
-    2: required base.Timestamp created_at
 }
 
 struct StatRefund {
