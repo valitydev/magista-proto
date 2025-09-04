@@ -23,7 +23,7 @@ struct PaymentSearchQuery {
     2: required PaymentParams payment_params
     3: optional list<domain.InvoiceID> invoice_ids
     4: optional string external_id
-    5: optional list<domain.ShopID> excluded_shop_ids
+    5: optional list<base.ID> excluded_shop_ids
 }
 
 struct RefundSearchQuery {
@@ -58,8 +58,8 @@ struct InvoiceTemplateSearchQuery {
 struct CommonSearchQueryParams {
     1: required base.Timestamp to_time
     2: required base.Timestamp from_time
-    3: optional domain.PartyID party_id
-    4: optional list<domain.ShopID> shop_ids
+    3: optional base.ID party_id
+    4: optional list<base.ID> shop_ids
     5: optional ContinuationToken continuation_token
     6: optional i32 limit
 }
@@ -77,7 +77,6 @@ struct PaymentParams {
     9: optional string payment_first6
     25: optional domain.PaymentSystemRef payment_system
     12: optional string payment_last4
-    11: optional domain.CustomerID payment_customer_id
     13: optional string payment_provider_id
     14: optional string payment_terminal_id
     15: optional domain.Amount payment_amount
@@ -131,8 +130,8 @@ struct StatInvoiceTemplateResponse {
 struct StatPayment {
     1: required domain.InvoicePaymentID id
     2: required domain.InvoiceID invoice_id
-    3: required domain.PartyID owner_id
-    4: required domain.ShopID shop_id
+    3: required base.ID owner_id
+    4: required base.ID shop_id
     5: required base.Timestamp created_at
     6: required domain.InvoicePaymentStatus status
     7: required domain.Amount amount
@@ -154,14 +153,7 @@ struct StatPayment {
 
 union Payer {
     1: domain.PaymentResourcePayer payment_resource
-    2: CustomerPayer        customer
     3: domain.RecurrentPayer       recurrent
-}
-
-struct CustomerPayer {
-    1: required domain.CustomerID customer_id
-    2: required domain.PaymentTool payment_tool
-    3: optional domain.ContactInfo contact_info
 }
 
 enum InvoicePaymentFlowType {
@@ -206,8 +198,8 @@ enum PaymentToolType {
 
 struct StatInvoice {
     1: required domain.InvoiceID id
-    2: required domain.PartyID owner_id
-    3: required domain.ShopID shop_id
+    2: required base.ID owner_id
+    3: required base.ID shop_id
     4: required base.Timestamp created_at
     5: required domain.InvoiceStatus status
     6: required string product
@@ -228,17 +220,12 @@ enum InvoiceStatus {
     fulfilled
 }
 
-struct StatCustomer {
-    1: required domain.Fingerprint id
-    2: required base.Timestamp created_at
-}
-
 struct StatRefund {
     1: required domain.InvoicePaymentRefundID id
     2: required domain.InvoicePaymentID payment_id
     3: required domain.InvoiceID invoice_id
-    4: required domain.PartyID owner_id
-    5: required domain.ShopID shop_id
+    4: required base.ID owner_id
+    5: required base.ID shop_id
     6: required domain.InvoicePaymentRefundStatus status
     7: required base.Timestamp created_at
     8: required domain.Amount amount
@@ -263,8 +250,8 @@ struct StatChargeback {
     1: required domain.InvoiceID invoice_id
     2: required domain.InvoicePaymentID payment_id
     3: required domain.InvoicePaymentChargebackID chargeback_id
-    4: required domain.PartyID party_id
-    5: required domain.ShopID shop_id
+    4: required base.ID party_id
+    5: required base.ID shop_id
     6: required domain.InvoicePaymentChargebackStatus chargeback_status
     7: required base.Timestamp created_at
     8: optional domain.InvoicePaymentChargebackReason chargeback_reason
@@ -282,8 +269,8 @@ struct StatChargeback {
 
 struct StatInvoiceTemplate {
     1: required base.Timestamp event_created_at
-    2: required domain.PartyID party_id
-    3: required domain.ShopID shop_id
+    2: required base.ID party_id
+    3: required base.ID shop_id
     4: required domain.InvoiceTemplateID invoice_template_id
     5: required base.Timestamp invoice_valid_until
     6: required string product
