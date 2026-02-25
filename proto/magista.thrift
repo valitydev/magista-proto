@@ -24,6 +24,7 @@ struct PaymentSearchQuery {
     3: optional list<domain.InvoiceID> invoice_ids
     4: optional string external_id
     5: optional list<base.ID> excluded_shop_ids
+    6: optional list<string> external_ids
 }
 
 struct RefundSearchQuery {
