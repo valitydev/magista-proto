@@ -61,9 +61,9 @@ struct CommonSearchQueryParams {
     2: required base.Timestamp from_time
     3: optional base.ID party_id
     4: optional list<base.ID> shop_ids
-    4: optional list<base.ID> provider_ids
     5: optional ContinuationToken continuation_token
     6: optional i32 limit
+    7: optional list<base.ID> provider_ids
 }
 
 struct PaymentParams {
