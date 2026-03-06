@@ -63,7 +63,7 @@ struct CommonSearchQueryParams {
     4: optional list<base.ID> shop_ids
     5: optional ContinuationToken continuation_token
     6: optional i32 limit
-    7: optional list<base.ID> provider_ids
+    7: optional list<i32> provider_ids
 }
 
 struct PaymentParams {
@@ -237,6 +237,7 @@ struct StatRefund {
     12: optional domain.InvoiceCart cart
     13: optional string external_id
     14: optional base.Timestamp status_changed_at
+    15: optional domain.ProviderRef provider_id
 }
 
 enum InvoicePaymentRefundStatus {
@@ -267,6 +268,7 @@ struct StatChargeback {
     17: optional domain.InvoicePaymentChargebackStage stage
     18: optional base.Content content
     19: optional string external_id
+    20: optional domain.ProviderRef provider_id
 }
 
 struct StatInvoiceTemplate {
