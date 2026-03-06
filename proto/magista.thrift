@@ -63,6 +63,7 @@ struct CommonSearchQueryParams {
     4: optional list<base.ID> shop_ids
     5: optional ContinuationToken continuation_token
     6: optional i32 limit
+    7: optional list<base.ID> provider_ids
 }
 
 struct PaymentParams {
