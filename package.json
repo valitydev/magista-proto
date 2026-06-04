@@ -40,10 +40,6 @@
     }
   },
   "files": ["dist", "proto"],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/valitydev/magista-proto.git"
-  },
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/magista-proto#readme",
   "devDependencies": {
