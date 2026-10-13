@@ -39,7 +39,7 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/valitydev/magista-proto#readme",
   "dependencies": {
-    "@vality/domain-proto": "^2.0.2-7caa184.0",
+    "@vality/domain-proto": "latest",
     "@vality/tsthrift": "^0.2.0"
   },
   "devDependencies": {
